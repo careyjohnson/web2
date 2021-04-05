@@ -1,46 +1,98 @@
 body {
   box-sizing: border-box;
   margin: 0;
-  background: #e0eafc; /* fallback for old browsers */
+  background: #232526; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to bottom,
-    #cfdef3,
-    #e0eafc
+    #414345,
+    #232526
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(
     to bottom,
-    #cfdef3,
-    #e0eafc
+    #414345,
+    #232526
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   min-height: 100vh;
 }
 header h1 {
-  color: rgb(243, 163, 43);
+  color: rgb(241, 238, 234);
   text-align: center;
-  /* font-size: initial; */
 }
 nav ul {
   list-style-type: none;
-  background-color: #f1c07f;
-  padding: 10px;
+  background-color: #5e5b5b;
 }
 nav ul li {
   display: inline-block;
+  line-height: 50px;
 }
 nav ul li a {
   text-decoration: none;
-  text-align: center;
-  color: black;
-  padding: 10px;
+  color: rgb(248, 241, 241);
+  padding: 0 10px 0 10px;
 }
-nav ul li a:hover {
-  background-color: antiquewhite;
+nav ul li:hover {
+  background-color: rgb(117, 116, 114);
+}
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  /* padding-top: 3px; */
 }
 article {
-  margin: 15px;
-  background-color: #f0e6db;
-  padding: 3px 10px;
+  margin: 15px 25px;
+  background-color: #f0ece7;
+  padding: 3px 25px;
+  text-align: justify;
 }
-nav .active {
-  background-color: antiquewhite;
+nav li.active {
+  background-color: rgb(117, 116, 114);
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: block;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-bottom: 48px;
+  overflow: auto;
+  width: 100%;
+  font-size: 16px;
+  font-family: "Inter-Regular", sans-serif;
+  color: #6e7b81;
+}
+table th {
+  font-weight: 700;
+  color: #fff;
+  font-size: 16px;
+  text-align: center;
+  background: #466db2 !important;
+  border-color: #466db2 !important;
+  font-family: "Inter-Regular", sans-serif;
+  text-transform: uppercase;
+}
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 16px;
+  vertical-align: middle;
+  border-top: 1px solid #757677;
+  text-align: left;
+}
+@media only screen and (max-width: 800px) {
+  nav ul li {
+    display: flex;
+    /* margin: 0; */
+  }
+  nav ul {
+    padding: 0;
+  }
+}
+.function {
+  color: blue;
+}
+article .moment_js {
+  text-align: center;
 }

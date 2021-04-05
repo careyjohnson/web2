@@ -12,25 +12,102 @@
   <header>
     <h1>Thanh Mai's Blog</h1>
   </header>
-    <nav>
+    <nav class="nav" id="myNav">
       <ul>
         <li><a href="index.html">Trang chu</a></li>
-        <li><a class="nav active" href="so-sanh.html">So sanh khac nhau giua let va var</a></li>
+        <li class="nav active"><a href="so-sanh.html">So sanh khac nhau giua let va var</a></li>
         <li><a href="so-sanh-sss.html">So sanh slice, substring, substr</a></li>
         <li><a href="moment.html">MomentJS</a></li>
       </ul>
     </nav>
     <article>
-      <h4>Let va var bla bla</h4>
-      <p>Let la gi?</p>
-      <p>Var la gi?</p>
-      <pre><code>
-function demo(){
-  let a;
-  var b;
-}
-      </code></pre>
-    </article>
+      <h2>JavaScript Demo Khác nhau giữa var và let</h2>
+      <div class="scope">
+        <h3>Scoping rule</h3>
+        <p>
+          Sự khác biệt chính là quy tắc xác định phạm vi. Các biến được khai báo bởi từ khóa "var" được xác định phạm vi đến 
+          thân hàm ngay lập tức (do đó là phạm vi hàm) trong khi các biến "let" được xác định phạm vi đến khối bao ngay được ký 
+          hiệu là {} (do đó là phạm vi khối).
+        </p>
+        <pre><code>
+  <span class="function">function</span> run() {
+    var foo = "Foo";
+    let bar = "Bar";
   
+    console.log(foo, bar); // Foo Bar
+  
+    {
+      var moo = "Mooo"
+      let baz = "Bazz";
+      console.log(moo, baz); // Mooo Bazz
+  }
+  
+    console.log(moo); // Mooo
+    console.log(baz); // ReferenceError
+  }
+  
+  run();
+        </code></pre>
+        <!-- <p id="scope"></p>
+        <button id="scope">Try it</button> -->
+      </div>
+      <div class="hoisting">
+        <h3>Hoisting</h3>
+        <p>
+          Trong khi các biến được khai báo với từ khóa "var" được lưu trữ (được khởi tạo với không xác định trước khi chạy mã), có nghĩa là chúng có thể truy cập được trong phạm vi bao quanh của chúng ngay cả trước khi chúng được khai báo:
+        </p>
+        <pre><code>
+  <span class="function">function </span>run() {
+    console.log(foo); // undefined
+    var foo = "Foo";
+    console.log(foo); // Foo
+  }
+  
+  run();
+        </code></pre>
+        <p>
+          Các biến "let" không được khởi tạo cho đến khi định nghĩa của chúng được đánh giá. Truy cập chúng trước khi khởi tạo dẫn đến một ReferenceError. Biến được cho là nằm trong "vùng chết tạm thời" từ khi bắt đầu khối cho đến khi quá trình khởi tạo được xử lý.
+        </p>
+        <pre><code>
+<span class="function">function</span> checkHoisting() {
+    console.log(foo); // ReferenceError
+    let foo = "Foo";
+    console.log(foo); // Foo
+  }
+  
+  checkHoisting();
+        </code></pre>
+      </div>
+      <div class="global">
+        <h3>Creating global object property</h3>
+        <p>
+          Ở cấp cao nhất, "let", không giống như "var", không tạo thuộc tính trên đối tượng toàn cục:
+        </p>
+        <pre><code>
+  var foo = "Foo";  // globally scoped
+  let bar = "Bar"; // globally scoped
+
+  console.log(window.foo); // Foo
+  console.log(window.bar); // undefined
+        </code></pre>
+      </div>
+      <div class="redeclare">
+        <h3>Redeclaration</h3>
+        <p>
+          Trong chế độ nghiêm ngặt, "var" sẽ cho phép bạn khai báo lại cùng một biến trong cùng một phạm vi trong khi cho phép tạo ra Lỗi cú pháp.
+        </p>
+<pre><code>
+  'use strict';
+  var foo = "foo1";
+  var foo = "foo2"; // No problem, 'foo' is replaced.
+
+  let bar = "bar1";
+  let bar = "bar2"; // SyntaxError: Identifier 'bar' has already been declared
+</code></pre>
+      </div>
+    </article>
+  <footer>
+
+  </footer>
 </body>
 </html>

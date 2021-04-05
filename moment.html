@@ -11,14 +11,244 @@
 <body>
   <header>
     <h1>Thanh Mai's Blog</h1>
-    <nav>
+    <nav class="nav" id="myNav">
       <ul>
         <li><a href="index.html">Trang chu</a></li>
         <li><a href="so-sanh.html">So sanh khac nhau giua let va var</a></li>
         <li><a href="so-sanh-sss.html">So sanh slice, substring, substr</a></li>
-        <li><a class="nav active" href="moment.html">MomentJS</a></li>
+        <li class="nav active" ><a href="moment.html">MomentJS</a></li>
       </ul>
     </nav>
   </header>
+  <article>
+    <h2 class="moment_js">MomentJS - Overview</h2>
+    <p>Moment JS là một thư viện JavaScript cho phép hiển thị ngày tháng theo bản địa hóa và ở định dạng con người có thể đọc được. Bạn có thể sử dụng MomentJS bên trong trình duyệt bằng phương pháp script. Nó cũng có sẵn với Node.js và có thể được cài đặt bằng npm.</p>
+    <p>Trong MomentJS, bạn có thể tìm thấy nhiều phương pháp dễ sử dụng để cộng, trừ, xác thực ngày, lấy ngày tối đa, tối thiểu, v.v. Đây là một dự án mã nguồn mở và bạn có thể dễ dàng đóng góp vào thư viện và thêm các tính năng dưới dạng plugin và cung cấp nó trên GitHub và Node.js.
+    </p>
+    <h3>Thông tin hướng dẫn</h3>
+    <p>Trong hướng dẫn này, chúng ta sẽ xem xét Moment.js. Sau đây là những điều chúng tôi sẽ giải quyết:</p>
+    <ul>
+      <li>Tham chiếu Moment.js và hiển thị kết quả ngày cơ bản</li>
+      <li>Hiển thị các ngày được định dạng</li>
+      <li>Phân tích cú pháp ngày</li>
+      <li>Phát hiện ngày không hợp lệ</li>
+      <li>Sửa ngày không hợp lệ</li>
+      <li>Thêm và trừ ngày tháng</li>
+    </ul>
+    <h3>Tham chiếu Moment.js và hiển thị kết quả đầu ra cơ bản</h3>
+    <p>Để bắt đầu, bạn cần tải xuống Moment.js và tham chiếu nó trong tài liệu HTML của mình. Bạn cũng có thể tìm thấy thư viện tại cdnjs.com (một CDN công cộng cho các dự án nguồn mở). Chỉ cần tìm kiếm thư viện bằng thuật ngữ “moment.js”.</p>
+    <p>Điều đầu tiên chúng ta sẽ làm trong hướng dẫn này là tham khảo thư viện Moment.js.</p>
+    <p>Sau đó, để đảm bảo nó hoạt động bình thường, chúng ta sẽ khởi tạo một đối tượng moment và một đối tượng JavaScript Date, sau đó xuất ra các giá trị của chúng.</p>
+    <p>Phần sau đây sẽ chỉ cho bạn cách tham chiếu thư viện Moment.js trong tài liệu HTML của bạn, cũng như cách khởi tạo và hiển thị các giá trị của đối tượng moment và đối tượng JavaScript Date.</p>
+
+    <pre style="white-space: pre-wrap; word-wrap: break-word;">  &lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+  &lt;head&gt;
+    <strong>&lt;!-- reference Moment.js library --&gt;</strong>
+    &lt;script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+  
+  &lt;h2&gt;Moment Date&lt;/h2&gt;<strong>
+  &lt;!-- container for Moment.js output --&gt;</strong>
+  &lt;div id="displayMoment"&gt;&lt;/div&gt;
+  
+  &lt;h2&gt;JavaScript Date&lt;/h2&gt;
+  <strong>&lt;!-- container for JavaScript Date output --&gt;</strong>
+  &lt;div id="displayJsDate"&gt;&lt;/div&gt;
+  
+  &lt;script type="text/javascript"&gt;
+  (<span class="function">function</span> ()
+  {
+    <strong>// instantiate a moment object</strong>
+    var NowMoment = moment();
+    
+    <strong>// instantiate a JavaScript Date object</strong>
+    var NowDate = new Date();
+    
+    <strong>// display value of moment object in #displayMoment div</strong>
+    var eDisplayMoment = document.getElementById('displayMoment');
+    eDisplayMoment.innerHTML = NowMoment;
+    
+    <strong>// display value of Date object in #displayJsDate div</strong>
+    var eDisplayDate = document.getElementById('displayJsDate');
+    eDisplayDate.innerHTML = NowDate;
+  })();
+  &lt;/script&gt;
+  
+  &lt;/body&gt;
+  &lt;/html&gt;
+    </pre>
+    <p><a style="display: inline-block; padding: 6px 10px; color: #ffffff; border-radius: 3px; text-decoration: none; text-align: center; text-transform: uppercase; background-color: #363636;" href="https://www.webfx.com/blog/images/assets/cdn.sixrevisions.com/0438-01_javascript-dates-moment-js/demo01.html" target="_blank" rel="noopener noreferrer">View Demo 1</a></p>
+  <p>Tại thời điểm này, độ dài mã của cả đối tượng thời điểm và ngày gốc trông ngang nhau.</p>
+  <h3>Hiển thị Ngày được Định dạng</h3>
+  <p>Tuy nhiên, mọi thứ giữa thời điểm và JavaScript Ngày thay đổi nhanh chóng, khi chúng tôi muốn xuất ngay cả một màn hình hiển thị ngày đơn giản, con người có thể đọc được với định dạng ‘Y-m-d’ (ví dụ: ‘2021-1-12’).</p>
+  <p>Sử dụng JavaScript Date:</p>
+  <pre style="white-space: pre-wrap; word-wrap: break-word;"><strong>// use JavaScript Date to display current date in a div (#displayJsDate)</strong>
+    var NowDate = new Date();
+    var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var sDay = NowDate.getDate();
+    var sMonth = NowDate.getMonth() + 1;
+    var sYear = NowDate.getFullYear();
+    var eDisplayDate = document.getElementById('displayJsDate');
+    eDisplayDate.innerHTML = sYear+'-'+sMonth+'-'+sDay;
+    </pre>
+    <p>Moment.js làm cho mã trở nên ngắn gọn hơn.</p>
+    <pre style="white-space: pre-wrap; word-wrap: break-word;"><strong>// use Moment.js to display current date in a div (#displayMoment)</strong>
+    var NowMoment = moment();
+    var eDisplayMoment = document.getElementById('displayMoment');
+    eDisplayMoment.innerHTML = NowMoment.format('YYYY-M-D');
+    </pre>
+    <p><a style="display: inline-block; padding: 6px 10px; color: #ffffff; border-radius: 3px; text-decoration: none; text-align: center; text-transform: uppercase; background-color: #363636;" href="https://www.webfx.com/blog/images/assets/cdn.sixrevisions.com/0438-01_javascript-dates-moment-js/demo02.html" target="_blank" rel="noopener noreferrer">View Demo 2</a></p>
+    <p>Bạn sẽ nhận thấy rằng phải thêm rất nhiều mã thiết lập cho đầu ra định dạng ngày cụ thể trong giải pháp gốc và chỉ một phương thức đơn giản được gọi là .format() trong giải pháp Moment.</p>
+    <p>Đối số chuỗi mà chúng tôi đã truyền vào .format (), là 'YYYY-M-D', là định dạng mà chúng tôi yêu cầu thư viện Moment.js trả về ngày. Trang web Moment.js có nhiều tùy chọn định dạng thuận tiện được liệt kê trong một bảng ở đây:</p>
+    <ul>
+      <li><a href="http://momentjs.com/docs/#/displaying/format/" target="_blank" rel="noopener noreferrer">http://momentjs.com/docs/#/displaying/format/</a></li>
+    </ul>
+    <p>Bây giờ chúng ta đã quen thuộc với quy trình hiển thị và định dạng ngày hiện tại, hãy tiếp tục.</p>
+    <h3>Ngày phân tích cú pháp</h3>
+    <p>Bộ khởi tạo Moment sẽ nhận một tham số và đặt đối tượng Date thành ngày đó.</p>
+    <pre style="white-space: pre-wrap; word-wrap: break-word;">  &lt;h2&gt;Output Date&lt;/h2&gt;
+  &lt;div id="output"&gt;&lt;/div&gt;
+  
+  &lt;script type="text/javascript"&gt;
+  (<span class="function">function</span> ()
+  {
+    var Date = moment('July 1, 2014');
+    var eDisplayMoment = document.getElementById('output');
+    <strong>// display output in the preferred format</strong>
+    eDisplayMoment.innerHTML = Date.format('YYYY-M-D');
+  })();
+  &lt;/script&gt;
+      </pre>
+      <p>Một chi tiết cần lưu ý là không có tiêu chuẩn nào mà các trình duyệt tuân thủ khi phân tích cú pháp ngày. May mắn thay, thư viện Moment.js cung cấp các tham số bổ sung cho phép chúng tôi chỉ định mẫu chính xác mà chúng tôi đang chuyển vào để giúp chúng tôi tránh sự mâu thuẫn giữa các trình duyệt.</p>
+      <p>Để có tính nhất quán trên tất cả các trình duyệt và nền tảng, đoạn mã trên phải được phân tích cú pháp như sau.</p>
+      <pre style="white-space: pre-wrap; word-wrap: break-word;">  &lt;h2&gt;Input Date&lt;/h2&gt;
+  &lt;div id="input"&gt;July 1, 2014&lt;/div&gt;
+  
+  &lt;h2&gt;Output Date&lt;/h2&gt;
+  &lt;div id="output"&gt;&lt;/div&gt;
+  
+  &lt;script type="text/javascript"&gt;
+  (<span class="function">function</span> ()
+  {
+    <strong>// get the input date from #input div element</strong>
+    var input = document.getElementById('input').innerHTML;
+    
+    <strong>// use moment() with input value and a string format pattern as arguments</strong>
+    var Date = moment(input, 'MMMM D, YYYY');
+    
+    <strong>// display the parsed date in a div (#output)</strong>
+    var eDisplayMoment = document.getElementById('output');
+    eDisplayMoment.innerHTML = Date.format('YYYY-M-D');
+  })();
+  &lt;/script&gt;
+        </pre>
+        <p><a style="display: inline-block; padding: 6px 10px; color: #ffffff; border-radius: 3px; text-decoration: none; text-align: center; text-transform: uppercase; background-color: #363636;" href="https://www.webfx.com/blog/images/assets/cdn.sixrevisions.com/0438-01_javascript-dates-moment-js/demo03.html" target="_blank" rel="noopener noreferrer">View Demo 3</a></p>
+        <p>Trang web Moment.js có một bảng khác hiển thị các tham số có sẵn mà chúng tôi có thể sử dụng để phân tích cú pháp:</p>
+        <ul>
+          <li><a href="http://momentjs.com/docs/#/parsing/string-format/" target="_blank" rel="noopener noreferrer">http://momentjs.com/docs/#/parsing/string-format/</a></li>
+        </ul>
+        <p>Vì giá trị mà chúng ta đang phân tích cú pháp hiếm khi được nhập bằng tay, nên điều quan trọng là phải biết rằng chúng ta đang thực sự phân tích cú pháp một giá trị ngày tháng.</p>
+        <p>Hãy xem xét đầu vào '2021-14-12' - đây là ngày không thể. Trong trường hợp này, hàm moment () sẽ thực sự trả về chuỗi 'Ngày không hợp lệ' nếu bạn cố gắng phân tích cú pháp.</p>
+        <p>Tuy nhiên, có các công cụ bổ sung có sẵn cho chúng tôi để phát hiện và sửa chữa các giá trị ngày không hợp lệ.</p>
+        <h3>Phát hiện ngày không hợp lệ</h3>
+        <p>Để phát hiện một ngày không hợp lệ, Moment.js cung cấp cho chúng ta phương thức isValid (). Nó trả về một giá trị boolean đơn giản (đúng hoặc sai), cho phép chúng tôi xác định hướng hành động tiếp theo trong logic mã của chúng tôi trong trường hợp giá trị ngày không phải là giá trị hợp lệ.</p>
+        <p>Phương pháp phát hiện khác có sẵn là invalidAt (). Phương pháp này cụ thể hơn, nó sẽ cho chúng ta biết giá trị ngày tháng của chúng ta không hợp lệ ở đâu. Nó sẽ trả về một số nguyên từ 0 đến 6, ý nghĩa của chúng có thể được tìm thấy trong bảng sau.</p>
+        <table border="0" width="550" cellspacing="0" cellpadding="0">
+          <tbody>
+          <tr>
+          <th scope="col">Integer</th>
+          <th scope="col">Error location</th>
+          </tr>
+          <tr>
+          <td>0</td>
+          <td>Years</td>
+          </tr>
+          <tr>
+          <td>1</td>
+          <td>Months</td>
+          </tr>
+          <tr>
+          <td>2</td>
+          <td>Days</td>
+          </tr>
+          <tr>
+          <td>3</td>
+          <td>Hours</td>
+          </tr>
+          <tr>
+          <td>4</td>
+          <td>Minutes</td>
+          </tr>
+          <tr>
+          <td>5</td>
+          <td>Seconds</td>
+          </tr>
+          <tr>
+          <td>6</td>
+          <td>Milliseconds</td>
+          </tr>
+          </tbody>
+          </table>
+          <p>Vì vậy, trong ví dụ về '2021-14-12', hàm invalidAt () sẽ trả về 1 vì 14 là tháng không hợp lệ (chỉ 1-12 là giá trị tháng hợp lệ).</p>
+          <h3>Sửa ngày không hợp lệ</h3>
+          <p>Khi nào bạn có thể sửa một ngày không hợp lệ? Nếu trước đây bạn chưa làm việc với các ngày dài thì điều này có thể khiến bạn khó chịu. Tuy nhiên, có nhiều biến số hơn chỉ là ngày tháng: Chúng ta cũng phải xem xét cách chúng ta nhận ngày và ai đang cung cấp ngày đó.</p>
+          <p>Thông thường, chúng tôi yêu cầu mọi người nhập ngày tháng và mặc dù chúng tôi đã cố gắng hết sức và các chú giải công cụ hào nhoáng yêu cầu họ nhập vào một định dạng ngày cụ thể như “d / m / y”, họ vẫn phớt lờ hướng dẫn của chúng tôi và cung cấp “m / d / y”.</p>
+          <p>Chúng ta có thể quay lại lệnh gọi phân tích ngày tháng mà chúng ta đã thực hiện trước đó và thêm tham số phân tích cú pháp thứ hai (bạn có thể có nhiều hơn hai tùy chọn) bằng cách chuyển vào một mảng chuỗi gồm nhiều định dạng ngày tháng khác nhau dưới dạng dự phòng.</p>
+          <p>Hãy sử dụng <em>January 1, 2014</em> làm ví dụ đầu vào. Chúng ta sẽ nhập dữ liệu vào ngày <code>14/1/2014</code> và <code>1/14/2014</code> với kỳ vọng đầu vào là <code>D/M/YYYY</code>.</p>          
+          <pre style="white-space: pre-wrap; word-wrap: break-word;">  &lt;h2&gt;Input Dates&lt;/h2&gt;
+  &lt;div id="input1"&gt;14/1/2014&lt;/div&gt;
+  &lt;div id="input2"&gt;1/14/2014&lt;/div&gt;
+  
+  &lt;h2&gt;Output Dates (1 format)&lt;/h2&gt;
+  &lt;div id="output1"&gt;&lt;/div&gt;
+  &lt;div id="output2"&gt;&lt;/div&gt;
+  
+  &lt;h2&gt;Output (multiple formats)&lt;/h2&gt;
+  &lt;div id="output3"&gt;&lt;/div&gt;
+  &lt;div id="output4"&gt;&lt;/div&gt;
+  
+  &lt;script type="text/javascript"&gt;
+  (<span class="function">function</span> ()
+  {
+    var correct = document.getElementById('input1').innerHTML;
+    var incorrect = document.getElementById('input2').innerHTML;
+    
+    var Date1 = moment(correct, 'D/M/YYYY');
+    document.getElementById('output1').innerHTML = Date1.format('MMMM D, YYYY');
+    
+    var Date2 = moment(incorrect, 'D/M/YYYY');
+    <strong>// will display 'Invalid Date' in #output2 because input format is incorrect</strong>
+    document.getElementById('output2').innerHTML = Date2.format('MMMM D, YYYY');
+  
+    var Date3 = moment(correct, ['D/M/YYYY','M/D/YYYY']);
+    document.getElementById('output3').innerHTML = Date3.format('MMMM D, YYYY');
+  
+    <strong>// will try to parse using two potential date formats</strong>
+    var Date4 = moment(incorrect, ['D/M/YYYY','M/D/YYYY']);
+    <strong>// will display correct date format</strong>
+    document.getElementById('output4').innerHTML = Date4.format('MMMM D, YYYY');
+  })();
+  &lt;/script&gt;
+            </pre>
+            <p><a style="display: inline-block; padding: 6px 10px; color: #ffffff; border-radius: 3px; text-decoration: none; text-align: center; text-transform: uppercase; background-color: #363636;" href="https://www.webfx.com/blog/images/assets/cdn.sixrevisions.com/0438-01_javascript-dates-moment-js/demo04.html" target="_blank" rel="noopener noreferrer">View Demo 4</a></p>
+            <p>Bạn sẽ nhận thấy rằng chỉ với một đối số chuỗi, nếu đầu vào không khớp, bạn sẽ xuất ra 'Ngày không hợp lệ'.</p>
+            <p>Tuy nhiên, nếu bạn cung cấp một mảng định dạng chuỗi làm đối số, thì tùy chọn phân tích cú pháp đầu tiên hoạt động sẽ được sử dụng. Điều này rất tốt để loại bỏ hoặc dự đoán các lỗi người dùng có thể xảy ra.</p>
+            <h3>Thêm và trừ ngày</h3>
+            <p>Một trong những tính năng được yêu thích trong thư viện Moment.js là nó có các phương thức thao tác ngày tháng một cách thuận tiện, chẳng hạn như .add () và .subtract ().</p>
+            <p>Ví dụ:</p>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;">  <strong>// current date</strong>
+  var Date = moment();
+  
+  <strong>// add 7 days to current date</strong>
+  document.getElementById('currDatePlus7d').innerHTML = Date<strong>.add('days', 7);</strong><strong>// subtract 8 hours from current date</strong>
+  document.getElementById('currDateSub8h').innerHTML = Date<strong>.subtract('hours', 8);</strong><strong>// add 5 years and 3 months to current date</strong>
+  document.getElementById('currDatePlus8h').innerHTML = Date<strong>.add({years: 5, months: 3});</strong></pre>
+  <p><a style="display: inline-block; padding: 6px 10px; color: #ffffff; border-radius: 3px; text-decoration: none; text-align: center; text-transform: uppercase; background-color: #363636;" href="https://www.webfx.com/blog/images/assets/cdn.sixrevisions.com/0438-01_javascript-dates-moment-js/demo05.html" target="_blank" rel="noopener noreferrer">View Demo 5</a></p>
+  <p>Thư viện Moment.js sẽ xử lý các trường hợp cạnh một cách thanh lịch. Ví dụ: sử dụng đối tượng Ngày JavaScript gốc, việc thêm một tháng vào ngày 31 tháng 8 sẽ dẫn đến ngày 1 tháng 10. Thao tác tương tự này do Moment.js thực hiện sẽ tạo ra chính xác ngày 30 tháng 9.</p>
+  <h3>Kết luận</h3>
+  <p>Moment.js là một công cụ tuyệt vời nên có nếu bạn thường xuyên làm việc với phân tích cú pháp, định dạng và xác thực ngày tháng phía máy khách. Nó có rất nhiều thứ để tăng tốc độ phát triển JavaScript trong lĩnh vực này. Để xem mã nguồn của dự án, hãy truy cập <a href="https://github.com/moment/moment/" target="_blank" rel="noopener noreferrer">GitHub repository</a>. Để tìm hiểu thêm về các tính năng của nó, hãy xem <a href="http://momentjs.com/docs/" target="_blank" rel="noopener noreferrer">official docs</a>.</p>
+  </article>
 </body>
 </html>

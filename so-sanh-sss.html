@@ -11,14 +11,65 @@
 <body>
   <header>
     <h1>Thanh Mai's Blog</h1>
-    <nav>
+  </header>
+    <nav class="nav" id="myNav">
       <ul>
         <li><a href="index.html">Trang chu</a></li>
         <li><a href="so-sanh.html">So sanh khac nhau giua let va var</a></li>
-        <li><a class="nav active" href="so-sanh-sss.html">So sanh slice, substring, substr</a></li>
+        <li class="nav active"><a href="so-sanh-sss.html">So sanh slice, substring, substr</a></li>
         <li><a href="moment.html">MomentJS</a></li>
       </ul>
     </nav>
-  </header>
+  <article>
+    <h2></h2>
+    <p>Phương thức slice () trích xuất các phần của một chuỗi và trả về các phần được trích xuất trong một chuỗi mới.</p>
+    <p>Phương thức substr () trích xuất các phần của một chuỗi, bắt đầu từ ký tự ở vị trí được chỉ định và trả về số ký tự được chỉ định.</p>
+    <p>Phương thức substring () trích xuất các phần của một chuỗi và trả về các phần được trích xuất trong một chuỗi mới.</p>
+    
+    <h3>Cú pháp</h3>
+    <p>string.slice (start, end)</p>
+    <p>string.substr (start, length)</p>  
+    <p>string.substring (start, end)</p>
+    <p><strong>Note #1: </strong>slice() == substring()</p>
+    
+    <h3>Khả năng thay đổi chuỗi gốc</h3>
+    <p>slice(): Không</p>
+    <p>substr(): Không</p>  
+    <p>substring(): không</p> 
+    <p><strong>Note #2: </strong>slice() == substr() == substring()</p>
+    
+    <h3>Sử dụng số phủ định làm đối số</h3>
+    <p>slice(): chọn các ký tự bắt đầu từ cuối chuỗi</p>
+    <p>substr(): chọn các ký tự bắt đầu từ cuối chuỗi </p>
+    <p>substring(): không hoạt động </p>
+    <p><strong>Note #3: </strong>slice() == substr()</p>
+    
+    <h3>Nếu đối số thứ nhất lớn hơn đối số thứ hai</h3>
+    <p>slice(): Không hoạt động</p>
+    <p>substr(): vì đối số thứ hai KHÔNG phải là một vị trí, mà là giá trị độ dài, nó sẽ hoạt động như bình thường, không có vấn đề gì</p>
+    <p>substring(): sẽ hoán đổi hai đối số và hoạt động như bình thường</p>
+    
+    <h3>Đối số đầu tiên</h3>
+    <p>slice() Bắt buộc, cho biết: Chỉ số bắt đầu</p>
+    <p>substr() Bắt buộc, cho biết: Chỉ số bắt đầu</p>
+    <p>substring() Bắt buộc, cho biết: Chỉ số bắt đầu</p>
+    <p><strong>Note #4: </strong> slice() == substr () == substring ()</p>
+    
+    <h3>Đối số thứ hai</h3>
+    <p>slice(): Tùy chọn, Vị trí (tối đa, nhưng không bao gồm) nơi kết thúc quá trình trích xuất</p>
+    <p>substr(): Tùy chọn, Số ký tự cần trích xuất</p>
+    <p>substring(): Tùy chọn, Vị trí (tối đa, nhưng không bao gồm) nơi kết thúc quá trình trích xuất</p>
+    <p><strong>Note #5: </strong>slice() == substring()</p>
+
+    <h3>Điều gì sẽ xảy ra nếu Đối số thứ hai bị bỏ qua?</h3>
+    <p>slice () chọn tất cả các ký tự từ vị trí bắt đầu đến cuối chuỗi</p>
+    <p>substr () chọn tất cả các ký tự từ vị trí bắt đầu đến cuối chuỗi</p>
+    <p>substring () chọn tất cả các ký tự từ vị trí bắt đầu đến cuối chuỗi</p>
+    <p><strong>Note #6: </strong>slice() == substr () == substring ()</p>
+
+    <h3>Tổng kết: </h3>
+    <p>Nếu bạn biết chỉ mục (vị trí) mà bạn sẽ dừng (nhưng KHÔNG bao gồm), hãy sử dụng slice().</p>
+    <p>Nếu bạn biết độ dài của các ký tự sẽ được trích xuất, hãy sử dụng substr().</p> 
+  </article>
 </body>
 </html>
